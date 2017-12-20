@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript">
+      function reload() {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            var myObj = JSON.parse(this.responseText);
+            document.getElementById("2").src=myObj;
+          }
+        };
+        xmlhttp.open("GET","/website.redirect/"+ document.getElementById("1").value +".json", true);
+        xmlhttp.send();
+      }
+    </script>
+  </head>
+  <body>
+    <header>
+      <input type="text" id="1"/><button onclick="reload();">go</button>
+    </header>
+    <iframe src="about:blank" width="1000" height="1000" id="2"></iframe>
+  </body>
+</html>
